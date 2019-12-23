@@ -1,4 +1,3 @@
-# 电商项目
 ## IDEA常用快捷键
 Alt + Enter 万能快捷键(eclipse中为Ctrl + 1)
 
@@ -11,6 +10,10 @@ Ctrl + Alt + V 自动生成返回值变量(等价于.var)
 Ctrl + Alt + L 格式化代码(eclipse中为Ctrl +  Shift + F)
 
 Ctrl + Atl + O 优化导入的包
+
+Shift + Enter 跳转到下一行
+
+##### Ctrl + Shift + Enter 自动补全分号
 
 Ctrl + Alt + B 跳转到实现类(或者是Ctrl + Alt + 左键)
 
