@@ -18,3 +18,6 @@ systemctl stop firewalld 停止防火墙服务
 systemctl status firewalld 查看防火墙状态
 
 history 显示历史操作
+
+## 虚拟机不能上网的解决方法
+先看Linux的网络配置文件是否正确，再看宿主机的VMware的所有服务是否开启(注意：安装虚拟机之前必须先启动VMware的所有服务，否则虚拟机永远连不上外网)
