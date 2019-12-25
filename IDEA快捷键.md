@@ -13,7 +13,7 @@ Ctrl + Atl + O 优化导入的包
 
 Shift + Enter 跳转到下一行
 
-##### Ctrl + Shift + Enter 自动补全分号
+Ctrl + Shift + Enter 自动补全
 
 Ctrl + Alt + B 跳转到实现类(或者是Ctrl + Alt + 左键)
 
