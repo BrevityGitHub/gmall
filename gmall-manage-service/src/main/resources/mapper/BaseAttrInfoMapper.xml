@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<!-- namespace：写接口的全路径，即写与此xml文件同名的java文件的全路径-->
+<mapper namespace="com.brevity.gmall.manage.mapper.BaseAttrInfoMapper">
+
+    <!-- resultMap：表示返回映射的结果集
+    id：表示唯一，自定义的名称
+    type：表示映射结果集的返回数据类型
+    autoMapping：为true时表示自动映射数据库字段与实体类的属性名-->
+    <resultMap id="baseAttrInfoMap" type="com.brevity.gmall.bean.BaseAttrInfo" autoMapping="true">
+
+        <!-- id：表示主键
+        property：表示实体类的属性名
+        column：表示通过执行多表查询的SQL语句后，显示的字段名称
+        -->
+        <id property="id" column="id"></id>
+
+        <!-- result：表示普通字段 autoMapping="true"(result的另一种方式)-->
+        <!--<result></result>-->
+
+        <!-- mybatis配置一对多
+         property：属性名
+         ofType：集合返回的数据类型
+         -->
+        <collection property="attrValueList" ofType="com.brevity.gmall.bean.BaseAttrValue" autoMapping="true">
+
+            <!-- 如果字段名重复，需要起一个别名-->
+            <id property="id" column="attr_value_id"></id>
+        </collection>
+
+        <!-- mybatis配置多对一 -->
+        <!--<association property=""></association>-->
+    </resultMap>
+
+    <!-- id：表示同名的java文件中的方法名称
+     mybatis中：#{0}，#{1} 分别表示取对应的java文件的方法的第一个，第二个参数
+     -->
+    <select id="selectBaseAttrInfoListByCatalog3Id" resultMap="baseAttrInfoMap">
+        select
+            bai.id,
+            bai.attr_name,
+            bai.catalog3_id,
+            bav.id attr_value_id,
+            bav.value_name,
+            bav.attr_id
+        from
+            base_attr_info bai
+        inner join
+            base_attr_value bav
+        on
+            bai.id = bav.attr_id
+        where
+            catalog3_id = #{0}
+    </select>
+</mapper>

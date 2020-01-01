@@ -21,6 +21,8 @@ history 显示历史操作
 
 mkdir 创建文件夹
 
+rpm -qa |grep jdk 查找默认的jdk
+
 rpm -e --nodeps 文件名 卸载rpm方式安装的文件
 
 rpm -ivh 文件名.rpm 安装rpm文件
@@ -54,3 +56,4 @@ systemctl start mysqld.service 启动mysql服务
 
 ### 虚拟机不能上网的解决方法
 先看Linux的网络配置文件是否正确，再看宿主机的VMware的所有服务是否开启(注意：安装虚拟机之前必须先启动VMware的所有服务，否则虚拟机永远连不上外网)
+

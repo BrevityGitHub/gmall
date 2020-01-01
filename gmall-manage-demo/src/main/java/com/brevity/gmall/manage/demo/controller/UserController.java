@@ -18,4 +18,29 @@ public class UserController {
     public List<UserInfo> findAll() {
         return userService.findAll();
     }
+
+    @RequestMapping("findUserInfo")
+    public List<UserInfo> findUserInfo(UserInfo userInfo) {
+        return userService.findUserInfoByProperty(userInfo);
+    }
+
+    @RequestMapping("findByRange")
+    public List<UserInfo> findByRange(UserInfo userInfo) {
+        return userService.findByRange(userInfo);
+    }
+
+    @RequestMapping("addUser")
+    public void addUser(UserInfo userInfo) {
+        userService.addUser(userInfo);
+    }
+
+    @RequestMapping("deleteUser")
+    public void deleteUser(UserInfo userInfo) {
+        userService.deleteUser(userInfo);
+    }
+
+    @RequestMapping("updateUser")
+    public void updateUser(UserInfo userInfo) {
+        userService.updateUser(userInfo);
+    }
 }
