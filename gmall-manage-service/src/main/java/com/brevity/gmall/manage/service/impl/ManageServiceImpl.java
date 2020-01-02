@@ -2,13 +2,16 @@ package com.brevity.gmall.manage.service.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.brevity.gmall.bean.*;
+import com.brevity.gmall.config.RedisUtil;
 import com.brevity.gmall.manage.mapper.*;
 import com.brevity.gmall.service.ManageService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service // 使用dubbo的@Service注解
 public class ManageServiceImpl implements ManageService {
@@ -41,6 +44,8 @@ public class ManageServiceImpl implements ManageService {
     private SkuAttrValueMapper skuAttrValueMapper;
     @Autowired
     private SkuSaleAttrValueMapper skuSaleAttrValueMapper;
+    @Autowired
+    private RedisUtil redisUtil;
 
     @Override
     public List<BaseCatalog1> getCatalog1() {
@@ -211,5 +216,109 @@ public class ManageServiceImpl implements ManageService {
                 skuSaleAttrValueMapper.insertSelective(skuSaleAttrValue);
             }
         }
+    }
+
+    @Override
+    public SkuInfo getSkuInfo(String skuId) {
+
+        SkuInfo skuInfo = skuInfoMapper.selectByPrimaryKey(skuId);
+        /*
+         * 根据skuId调用方法得到skuImageList，放到skuInfo中，
+         * skuInfo设置了skuImageList属性(非数据库字段，而是业务需要的)
+         */
+        skuInfo.setSkuImageList(getSkuImageList(skuId));
+        return skuInfo;
+    }
+
+    // select * from sku_image where sku_id = ?
+    @Override
+    public List<SkuImage> getSkuImageList(String skuId) {
+        SkuImage skuImage = new SkuImage();
+        skuImage.setSkuId(skuId);
+        return skuImageMapper.select(skuImage);
+    }
+
+    /*
+     * SELECT
+        sa.id ,
+        sa.spu_id,
+        sa.sale_attr_name,
+        sa.sale_attr_id,
+        sv.id sale_attr_value_id,
+        sv.sale_attr_value_name,
+        skv.sku_id,
+        IF(skv.sku_id IS NULL,0,1) is_checked
+      FROM
+        spu_sale_attr sa
+      INNER JOIN
+        spu_sale_attr_value  sv
+      ON
+        sa.spu_id=sv.spu_id
+      AND
+        sa.sale_attr_id=sv.sale_attr_id
+      LEFT JOIN
+        sku_sale_attr_value skv
+      ON
+        skv.sale_attr_id= sa.sale_attr_id
+      AND
+        skv.sale_attr_value_id=sv.id
+      AND
+        skv.sku_id=#{arg0}
+      WHERE
+        sa.spu_id=#{arg1}
+      ORDER BY
+        sv.sale_attr_id,sv.id;
+     */
+    @Override
+    public List<SpuSaleAttr> getSpuSaleAttrListCheckBySku(SkuInfo skuInfo) {
+        return spuSaleAttrMapper.selectSpuSaleAttrListCheckBySku(skuInfo.getId(), skuInfo.getSpuId());
+    }
+
+    @Override
+    public List<SkuSaleAttrValue> getSkuSaleAttrValueListBySpu(String spuId) {
+        /*
+        * 保证切换销售属性值时还是同一个SPU
+        SELECT
+            sale_attr_value_id,
+            sku_id,
+            sale_attr_value_name
+        FROM
+            sku_sale_attr_value ssav,
+            sku_info si
+        WHERE
+            ssav.sku_id = si.id
+        AND
+            si.spu_id = #{0}
+        ORDER BY
+            si.id,ssav.sale_attr_id;
+         */
+        return skuSaleAttrValueMapper.selectSkuSaleAttrValueListBySpu(spuId);
+    }
+
+    @Override
+    public Map getSkuValueIdsMap(String spuId) {
+        /*
+         select
+             sku_id,
+             group_concat(sale_attr_value_id group by sale_attr_value_id asc separator '|') values_id
+         from
+             sku_sale_attr_value ssav
+         inner join
+             sku_info si
+         on
+             ssav.sku_id = si.id
+         where
+             si.spu_id = 60
+         group by
+             ssav.sku_id;
+         */
+        List<Map> mapList = skuSaleAttrValueMapper.getSaleAttrValuesBySpu(spuId);
+
+        // 声明一个map获取123|126|132 作为key，38当作value放入一个map中
+        HashMap<Object, Object> map = new HashMap<>();
+        for (Map mapSku : mapList) {
+            map.put(mapSku.get("value_ids"), mapSku.get("sku_id"));
+        }
+        return map;
     }
 }

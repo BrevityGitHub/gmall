@@ -11,7 +11,9 @@ Ctrl + Alt + L 格式化代码(eclipse中为Ctrl +  Shift + F)
 
 Ctrl + Atl + O 优化导入的包
 
-Shift + Enter 跳转到下一行
+Shift + Enter 跳转到下一行,并且定位到下一行
+
+Ctrl + Alt + Enter 向下增加一行，定位还在当前行
 
 Ctrl + Shift + Enter 自动补全
 
@@ -60,7 +62,7 @@ F8 执行下一行(相当于eclipse的F6)
 
 F9 继续执行(相当于eclipse的F8)
 
-Ctrl + Shift + F9 热部署(只修改页面的情况)
+Ctrl + Shift + F9 热部署(只修改页面的情况，且必须在配置文件中配置关闭缓存)
 
 
 

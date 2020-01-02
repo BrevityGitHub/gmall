@@ -3,6 +3,7 @@ package com.brevity.gmall.service;
 import com.brevity.gmall.bean.*;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ManageService {
     // 查询所有的一级分类数据，不需要参数
@@ -102,4 +103,42 @@ public interface ManageService {
      * @param skuInfo
      */
     void saveSkuInfo(SkuInfo skuInfo);
+
+    /**
+     * 根据skuId获取skuInfo对象
+     *
+     * @param skuId
+     * @return
+     */
+    SkuInfo getSkuInfo(String skuId);
+
+    /**
+     * 根据skuId获取skuImage列表
+     *
+     * @param skuId
+     * @return
+     */
+    List<SkuImage> getSkuImageList(String skuId);
+
+    /**
+     * 根据skuInfo对象获取销售属性与销售属性值
+     *
+     * @param skuInfo
+     * @return
+     */
+    List<SpuSaleAttr> getSpuSaleAttrListCheckBySku(SkuInfo skuInfo);
+
+    /**
+     * @param spuId
+     * @return
+     */
+    List<SkuSaleAttrValue> getSkuSaleAttrValueListBySpu(String spuId);
+
+    /**
+     * 根据spuId查询由销售属性值与skuId组成的map
+     *
+     * @param spuId
+     * @return
+     */
+    Map getSkuValueIdsMap(String spuId);
 }

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--spring boot1.0必须有 / 结尾 <meta charset="UTF-8"/>-->
+    <meta charset="UTF-8"/>
+    <title>demo</title>
+</head>
+<body>
+<h1>th:test</h1>
+
+<!-- th:text 页面显示的文本
+     th:value 表示如果有提交的时候，value是提交的数据
+ -->
+<div th:text="${name}" th:value="${name}"></div>
+
+<h1>each</h1>
+<table>
+    <tr th:each="str,stat: ${strList}">
+        <td th:text="${str}"></td>
+        <td th:text="${stat.index}"></td>
+    </tr>
+</table>
+<h1>判断</h1>
+<div th:text="${age}>=18?'开':'关'"></div>
+<div th:text="${age}>='18'?'开了':'关了'"></div>
+<span th:if="${age}>=18" th:text="${name}">呵呵呵</span>
+<span th:if="${age}>='18'" th:text="${name}">黑河</span>
+<span th:if="${age}<'18'" th:text="${name}">黑和河</span>
+
+<hr size="100" width="100px">
+
+<!-- 控制器使用session去set的话，页面获取必须使用session. 获取-->
+<div th:text="${session.address}"></div>
+<hr size="100" width="100px">
+<div th:text="${address}"></div>
+
+<div th:include="inner"></div>
+<div th:text="${green}"></div>
+
+<!-- th:utext 表示解析文本样式(全文检索时高亮使用)-->
+<div th:utext="${green}"></div>
+</body>
+</html>

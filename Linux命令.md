@@ -36,7 +36,6 @@ Linux下文件的权限类型一般包括读，写，执行。对应字母为 r=
 若要同时设置 r-x (可读可运行不可写)权限则将该权限位设置为 4 +1 = 5
 
 chmod -R 777 文件夹 授予文件夹所有的权限
-
 ### 安装mysql
 rpm -ivh mysql-community-common- …….rpm
 
@@ -53,7 +52,7 @@ mysqld --initialize --user=mysql 初始化mysql
 cat /var/log/mysqld.log 查看mysql初始化的密码(root@localhost: 后面就是初始化的密码)
 
 systemctl start mysqld.service 启动mysql服务
-
 ### 虚拟机不能上网的解决方法
-先看Linux的网络配置文件是否正确，再看宿主机的VMware的所有服务是否开启(注意：安装虚拟机之前必须先启动VMware的所有服务，否则虚拟机永远连不上外网)
+先看Linux的网络配置文件是否正确，再看宿主机的VMware的所有服务是否开启
+(注意：安装虚拟机之前必须先启动VMware的所有服务，否则虚拟机永远连不上外网)
 
