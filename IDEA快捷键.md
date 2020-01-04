@@ -7,6 +7,8 @@ Double Shift 在整个Java环境中查找指定文件
 
 Ctrl + Alt + V 自动生成返回值变量(等价于.var)
 
+Ctrl + Alt + M 抽取代码作为一个方法
+
 Ctrl + Alt + L 格式化代码(eclipse中为Ctrl +  Shift + F)
 
 Ctrl + Atl + O 优化导入的包
@@ -15,7 +17,7 @@ Shift + Enter 跳转到下一行,并且定位到下一行
 
 Ctrl + Alt + Enter 向下增加一行，定位还在当前行
 
-Ctrl + Shift + Enter 自动补全
+Ctrl + Shift + Enter 自动补全并格式化代码
 
 Ctrl + Alt + B 跳转到实现类(或者是Ctrl + Alt + 左键)
 
