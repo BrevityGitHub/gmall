@@ -5,6 +5,8 @@ Ctrl + E 打开最近浏览过的文件
 
 Double Shift 在整个Java环境中查找指定文件
 
+Ctrl + Shift + N 快速查找文件
+
 Ctrl + Alt + V 自动生成返回值变量(等价于.var)
 
 Ctrl + Alt + M 抽取代码作为一个方法
@@ -17,7 +19,7 @@ Shift + Enter 跳转到下一行,并且定位到下一行
 
 Ctrl + Alt + Enter 向下增加一行，定位还在当前行
 
-Ctrl + Shift + Enter 自动补全并格式化代码
+Ctrl + Shift + Enter 自动补全并格式化当前行
 
 Ctrl + Alt + B 跳转到实现类(或者是Ctrl + Alt + 左键)
 
@@ -37,7 +39,7 @@ Ctrl + Shift + Z 反撤销操作
 
 Ctrl + Shift + U 将指定代码进行大小写转换
 
-Shift + ESC 收起左侧的Project栏
+Shift + ESC 收起侧边栏
 
 Alt + Insert 快速创建文件或目录等
 
@@ -57,6 +59,7 @@ Ctrl + J 查看快速录入列表
 
 itco 迭代器遍历(可以在循环集合时移除数据)
 
+iter 生成增强for循环
 ## IDEA在debug模式下的快捷键
 F7 跳入代码内部(相当于eclipse的F5)
 

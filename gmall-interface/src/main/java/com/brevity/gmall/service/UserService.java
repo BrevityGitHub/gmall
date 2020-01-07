@@ -35,4 +35,13 @@ public interface UserService {
 
     List<UserAddress> getUserAddressByUserId(UserAddress userAddress);
 
+    UserInfo login(UserInfo userInfo);
+
+    /**
+     * 根据用户Id获取缓存中的用户对象
+     *
+     * @param userId
+     * @return
+     */
+    UserInfo verify(String userId);
 }

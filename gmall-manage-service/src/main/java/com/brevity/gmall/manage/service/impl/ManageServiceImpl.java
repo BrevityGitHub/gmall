@@ -461,4 +461,10 @@ public class ManageServiceImpl implements ManageService {
         }
         return map;
     }
+
+    @Override
+    public List<BaseAttrInfo> getAttrList(List<String> attrValueIdList) {
+        String attrValueIds = StringUtils.join(attrValueIdList.toArray(), ",");
+        return baseAttrInfoMapper.selectAttrInfoListByIds(attrValueIds);
+    }
 }

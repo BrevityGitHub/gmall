@@ -4,6 +4,7 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.fastjson.JSON;
 import com.brevity.gmall.bean.SkuInfo;
 import com.brevity.gmall.bean.SpuSaleAttr;
+import com.brevity.gmall.service.ListService;
 import com.brevity.gmall.service.ManageService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,8 @@ public class ItemController {
 
     @Reference
     private ManageService manageService;
+    @Reference
+    private ListService listService;
 
     @RequestMapping("{skuId}.html")
     public String item(@PathVariable String skuId, HttpServletRequest request) {
@@ -48,14 +51,12 @@ public class ItemController {
         for (int i = 0; i < skuSaleAttrValueListBySpu.size(); i++) {
             SkuSaleAttrValue skuSaleAttrValue = skuSaleAttrValueListBySpu.get(i);
 
-            *//* 第一次拼接：key = 123
+         * 第一次拼接：key = 123
          * 第二次拼接：key = 123|
          * 第三次拼接：key = 123|126
          * ……
          * 当停止拼接的时候，将key放入map中，并清空key，key = ""
-         *//*
-
-            // 当key不为空时拼接“|”
+         * 当key不为空时拼接“|”
             if (key.length() > 0) {
                 key += "|";
             }
@@ -68,7 +69,6 @@ public class ItemController {
                 key = ""; // 清空key
             }
         }
-
         */
 
         /*
@@ -86,6 +86,8 @@ public class ItemController {
 
         // 保存skuInfo到页面渲染
         request.setAttribute("skuInfo", skuInfo);
+
+        listService.updateHotScore(skuId);
         return "item";
     }
 }

@@ -53,4 +53,25 @@
         where
             catalog3_id = #{0}
     </select>
+
+    <!-- mybatis中$与#的区别：#：一个数据，可以防止SQL注入，$：一个变量 -->
+    <select id="selectAttrInfoListByIds" resultMap="baseAttrInfoMap">
+        SELECT
+            ai.id,
+            ai.attr_name,
+            ai.catalog3_id,
+            av.id attr_value_id ,
+            av.attr_id ,
+            av.value_name
+        FROM
+            base_attr_info ai
+        INNER JOIN
+            base_attr_value av
+        ON
+            ai.id = av.attr_id
+        WHERE
+            av.id
+        IN
+            (${valueIds})
+    </select>
 </mapper>
