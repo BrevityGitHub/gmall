@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.brevity.gmall.cart.mapper.CartInfoMapper">
+    <resultMap id="CartInfoMap" type="com.brevity.gmall.bean.CartInfo" autoMapping="true">
+        <id column="id" property="id"></id>
+        <!-- skuPrice = skuInfo.price -->
+        <result column="price" property="skuPrice"></result>
+    </resultMap>
+
+    <select id="selectCartListWithCurrentPrice" resultMap="CartInfoMap">
+        SELECT
+          c.*,IF(s.price IS NULL,c.cart_price,s.price) price
+        FROM
+          cart_info c
+        LEFT JOIN
+          sku_info s
+        ON
+          c.sku_id = s.id
+        WHERE
+          c.user_id = #{userId}
+        ORDER BY
+          c.id
+        DESC
+    </select>
+</mapper>
