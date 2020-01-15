@@ -40,7 +40,7 @@ public class ItemController {
          */
 
         /*
-        * 第一种方法(通过后台代码拼接)：
+         * 第一种方法(通过后台代码拼接)：
 
         List<SkuSaleAttrValue> skuSaleAttrValueListBySpu = manageService.getSkuSaleAttrValueListBySpu(skuInfo.getSpuId());
 

@@ -3,6 +3,8 @@ Alt + Enter 万能快捷键(eclipse中为Ctrl + 1)
 
 Ctrl + E 打开最近浏览过的文件
 
+Ctrl + Shift + 小键盘数字 书签标记
+
 Double Shift 在整个Java环境中查找指定文件
 
 Ctrl + Shift + N 快速查找文件

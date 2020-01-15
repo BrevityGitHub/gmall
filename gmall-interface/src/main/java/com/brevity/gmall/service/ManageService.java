@@ -149,4 +149,6 @@ public interface ManageService {
      * @return
      */
     List<BaseAttrInfo> getAttrList(List<String> attrValueIdList);
+
+    SkuInfo getSkuInfoFromDB(String skuId);
 }
