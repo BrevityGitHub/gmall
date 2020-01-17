@@ -97,6 +97,4 @@ public class CookieUtil {
             response, String cookieName) {
         setCookie(request, response, cookieName, null, 0, false);
     }
-
-
 }

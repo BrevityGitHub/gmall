@@ -53,7 +53,6 @@ public class WeChatPaymentController {
                 if (result_code != null || "SUCCESS".equals(result_code)) {
                     // 支付成功，修改交易状态，发送消息队列更改订单状态
 
-
                     // 存储相应数据给微信
                     HashMap<String, String> returnMap = new HashMap<>();
                     returnMap.put("return_code", "SUCCESS");

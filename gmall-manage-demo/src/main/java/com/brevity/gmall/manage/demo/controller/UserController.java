@@ -10,11 +10,12 @@ import java.util.List;
 
 @RestController
 public class UserController {
-    // 控制器调用服务层，注入service
+    // 控制器调用服务层接口，注入service
     @Autowired
     private UserService userService;
 
     @RequestMapping("findAll")
+    //  @ResponseBody 可以返回json字符串，也可以将数据直接显示到页面
     public List<UserInfo> findAll() {
         return userService.findAll();
     }

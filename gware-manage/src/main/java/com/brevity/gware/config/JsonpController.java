@@ -7,11 +7,9 @@ import org.springframework.web.servlet.mvc.method.annotation.AbstractJsonpRespon
  * @param
  * @return
  */
-
 @ControllerAdvice(basePackages = {"com.brevity.gware"})
 public class JsonpController extends AbstractJsonpResponseBodyAdvice {
-    public JsonpController(){
+    public JsonpController() {
         super("callback","jsonp");
     }
-
 }

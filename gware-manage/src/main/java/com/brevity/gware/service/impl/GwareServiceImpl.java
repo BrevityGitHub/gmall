@@ -1,6 +1,5 @@
 package com.brevity.gware.service.impl;
 
-
 import com.alibaba.fastjson.JSON;
 
 import com.brevity.gware.util.HttpclientUtil;
@@ -26,7 +25,6 @@ import tk.mybatis.mapper.entity.Example;
 
 import javax.jms.*;
 import java.util.*;
-
 
 @Service
 public class GwareServiceImpl implements GwareService {
@@ -236,7 +234,6 @@ public class GwareServiceImpl implements GwareService {
             wareOrderTaskDetailMapper.insert(wareOrderTaskDetail);
         }
         return wareOrderTask;
-
     }
 
     public void updateStatusWareOrderTaskByOrderId(String orderId, TaskStatus taskStatus) {
@@ -291,7 +288,6 @@ public class GwareServiceImpl implements GwareService {
                 wareSku.setSkuId(wareOrderTaskDetail.getSkuId());
 
                 wareSkuMapper.incrStockLocked(wareSku); //  加行级写锁 注意索引避免表锁
-
             }
             wareOrderTask.setTaskStatus(TaskStatus.DEDUCTED);
             updateStatusWareOrderTaskByOrderId(wareOrderTask.getOrderId(), TaskStatus.DEDUCTED);

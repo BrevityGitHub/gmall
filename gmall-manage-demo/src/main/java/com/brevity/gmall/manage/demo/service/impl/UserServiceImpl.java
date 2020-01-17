@@ -10,7 +10,7 @@ import tk.mybatis.mapper.entity.Example;
 import java.util.List;
 
 @Service
-public class UserSeviceImpl implements UserService {
+public class UserServiceImpl implements UserService {
 
     // 服务层调用数据访问层，注入mapper
     @Autowired // 自动注入，从容器中获取
@@ -55,7 +55,7 @@ public class UserSeviceImpl implements UserService {
         Example example = new Example(UserInfo.class);
         example.createCriteria().andEqualTo("loginName", userInfo.getLoginName());
 
-        // 第一个参数表示要修改的数据，第二个参数表示要修改的条件
+        // 第一个参数表示要修改的数据，第二个参数表示修改的条件
         userInfoMapper.updateByExampleSelective(userInfo, example);
     }
 }

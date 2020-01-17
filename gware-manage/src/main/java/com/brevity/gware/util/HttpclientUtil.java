@@ -47,10 +47,8 @@ public class HttpclientUtil {
             e.printStackTrace();
             return null;
         }
-
         return  null;
     }
-
 
     public static String doPost(String url, Map<String,String> paramMap)   {
 
@@ -85,7 +83,6 @@ public class HttpclientUtil {
             e.printStackTrace();
             return null;
         }
-
         return  null;
     }
 }

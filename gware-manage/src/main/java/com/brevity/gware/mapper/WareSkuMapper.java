@@ -11,7 +11,6 @@ import java.util.List;
  */
 public interface WareSkuMapper extends Mapper<WareSku> {
 
-
     public Integer selectStockBySkuid(String skuid);
 
     public int incrStockLocked(WareSku wareSku);

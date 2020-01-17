@@ -43,10 +43,8 @@ public class HttpClientUtil {
             e.printStackTrace();
             return null;
         }
-
         return  null;
     }
-
 
     public static void download(String url,String fileName)   {
 
@@ -81,7 +79,6 @@ public class HttpClientUtil {
             e.printStackTrace();
             return  ;
         }
-
         return   ;
     }
 }

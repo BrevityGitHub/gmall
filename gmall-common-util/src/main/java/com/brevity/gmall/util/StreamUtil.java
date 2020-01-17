@@ -5,7 +5,6 @@ import java.io.InputStream;
 
 public class StreamUtil {
 
-
     public static String inputStream2String(InputStream inStream, String encoding){
         int _buffer_size =1024;
         String result = null;
